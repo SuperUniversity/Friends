@@ -1,0 +1,56 @@
+﻿@model MyFriend.Areas.AreaFriends.Models.Articles
+@{
+    ViewBag.Title = "新增文章";
+}
+
+<h2>新增文章</h2>
+<hr />
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(p=>p.ArticleID)
+    <div class="form-group">
+        @Html.Label("活動類型", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @{
+                var activities = new SelectList(ViewBag.datas, "ActivityID", "ActivityName");
+            }
+            @Html.DropDownListFor(p => p.ActivityID, activities, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.ArticleTitle, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(p => p.ArticleTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "文章標題" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.WishNumber, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(p => p.WishNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "希望人數" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.WishDate, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(p => p.WishDate, new { htmlAttributes = new { @class = "form-control", placeholder = "希望日期" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Address, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(p => p.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "活動地點" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.ArticleContent, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(p => p.ArticleContent, new { htmlAttributes = new { @class = "form-control", placeholder = "文章標題" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">送出</button>
+        </div>
+    </div>
+}

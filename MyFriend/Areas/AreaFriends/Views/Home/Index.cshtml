@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MyFriend.Areas.AreaFriends.Models.Articles>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.ActionLink("新增文章", "Insert", "Home", new { area = "AreaFriends" }, new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            @*<th>@Html.DisplayNameFor(f => f.ActivityName)</th>*@
+            <th>@Html.DisplayNameFor(f => f.ArticleDate)</th>
+            <th>@Html.DisplayNameFor(f => f.ArticleTitle)</th>
+            <th>@Html.DisplayNameFor(f => f.WishNumber)</th>
+            <th>@Html.DisplayNameFor(f => f.WishDate)</th>
+            <th>@Html.DisplayNameFor(f => f.Address)</th>
+            <th>編輯/刪除</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var _article in Model) // Model為保留字，是從Action傳來的資料
+        {
+            <tr>
+                @*<td>@Html.DisplayFor(f => _article.ActivityName)</td>*@
+                <td>@Html.DisplayFor(f => _article.ArticleDate)</td>
+                <td>@Html.DisplayFor(f => _article.ArticleTitle)</td>
+                <td>@Html.DisplayFor(f => _article.WishNumber)</td>
+                <td>@Html.DisplayFor(f => _article.WishDate)</td>
+                <td>@Html.DisplayFor(f => _article.Address)</td>
+                <td>@Html.ActionLink("編輯", "Edit", "Home", new { area = "AreaFriends", id = @_article.ArticleID }, new { @class = "btn btn-primary" })  @Html.ActionLink("刪除", "Delete", "Home", new { area = "AreaFriends", id = @_article.ArticleID }, new { @class = "btn btn-primary" })</td>
+                @*<td><a href="~/Article/Edit/@_article.ArticleID" class="btn btn-primary">編輯</a></td>
+                    <td><a href="~/Article/Delete/@_article.ArticleID" class="btn btn-primary">刪除</a></td>*@
+            </tr>
+        }
+    </tbody>
+</table>
